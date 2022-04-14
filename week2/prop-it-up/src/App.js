@@ -35,8 +35,6 @@ function App() {
         <PersonCard person = {people[1]} />
         <PersonCard person = {people[2]} />
         <PersonCard person = {people[3]} />
-        {/* button event */}
-        <button onClick={ () => alert("Clicked!")}>Click Me!</button>
       </div>
     </>
   );
