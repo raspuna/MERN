@@ -58,7 +58,7 @@ const Form = () => {
             />
         </div>
         {password && password < 8 && <p>password must be at least 8 characters</p>}
-        {password && confirmPassword && password !== confirmPassword && <p>passwords must be match</p>}
+        {password && confirmPassword && password !== confirmPassword && <p>passwords must match</p>}
         {/*name !== '' && name.length <= 5 ? <p>Name must be at least 5 characters</p>: null */}
         
         <button className='btn btn-primary'>Submit</button>
