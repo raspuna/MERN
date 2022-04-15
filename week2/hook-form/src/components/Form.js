@@ -30,39 +30,35 @@ const Form = () => {
                 onChange={(e) => setFirstName(e.target.value)}
             />
         </div>
+        {firstName && firstName.length < 2 && <p>First Name must be at least 2 characters</p>}
         <div>
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" name="lastName" value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
             />
         </div>
+        {lastName && lastName.length < 2 && <p>Last Name must be at least 2 characters</p>}
         <div>
             <label htmlFor="email">Email</label>
             <input type="text" id="email" name="email" value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
         </div>
+        {email && email.length < 2 && <p>Email must be at least 2 characters</p>}
         <div>
-
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
         </div>
         <div>
-
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
         </div>
-
-
-
-
-        {/* it is work for only truth value if you wnat to use falsy value user ?:
-        name.length <= 5 && <p>Name must be at least 5 characters</p>
-        */}
+        {password && password < 8 && <p>password must be at least 8 characters</p>}
+        {password && confirmPassword && password !== confirmPassword && <p>passwords must be match</p>}
         {/*name !== '' && name.length <= 5 ? <p>Name must be at least 5 characters</p>: null */}
         
         <button className='btn btn-primary'>Submit</button>
