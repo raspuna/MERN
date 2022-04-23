@@ -13,6 +13,7 @@ function Box(props) {
         backgroundColor : color
     }
     const handleDelete = (e) => {
+        e.preventDefault();
         console.log(e.target)
         const filteredBox = boxes.filter((box) => box.id !== e.target.id)
         setBoxes(filteredBox)
