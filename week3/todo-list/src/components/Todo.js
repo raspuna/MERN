@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 function Todo(props) {
   const {todo, todoList, setTodoList} = props;
-  const {work, checked, id} = todo
+  const {work, checked, id} = todo;
   console.log({work});
   
   const handleCheck = (e) => {
@@ -23,7 +23,7 @@ function Todo(props) {
       //console.log({id});
       return item.id !== id;
     });
-    console.log(filteredTodoList)
+    console.log(filteredTodoList);
     setTodoList(filteredTodoList);
   }
   return (

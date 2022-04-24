@@ -15,12 +15,12 @@ function ListForm(props) {
         work: todo,
         checked: false,
         id : v4()
-      }
+      };
       setTodoList([...todoList, newTodo]);
       e.target.reset();
       setTodo('');
     } else {
-      console.log("somethin wrong")
+      console.log("somethin wrong");
     }
   }
   return (
@@ -30,7 +30,7 @@ function ListForm(props) {
       <Button variant="primary" type="submit">Add</Button>
     </Form>
     
-  )
+  );
 }
 
 export default ListForm;
