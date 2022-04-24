@@ -31,7 +31,7 @@ function Todo(props) {
       <Form
         className="d-flex justify-content-center">
           { checked? <strike>{work}</strike>: work }
-        <Form.Check onClick={handleCheck}>
+        <Form.Check checked={checked} onClick={handleCheck}>
         </Form.Check>
       </Form>
 

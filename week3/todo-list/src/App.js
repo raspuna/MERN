@@ -21,8 +21,8 @@ function App() {
         </Row>
         <Row>
           <Col>
-          {todoList.map((todo) => {
-              return <Todo todo={todo} todoList={todoList} setTodoList={setTodoList}/>
+          {todoList.map((todo, idx) => {
+              return <Todo key={idx} todo={todo} todoList={todoList} setTodoList={setTodoList}/>
             })}
 
           </Col>
