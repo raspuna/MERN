@@ -18,8 +18,40 @@ const getJoke = (req,res)=>{
         res.status(500).json({err});
     });
 }
+const getJokeById = (req,res)=>{
+    Joke.findOne({ _id: req.params.id })
+    .then((joke)=>{
+        res.status(200).json(joke);
+    })
+    .catch((err)=>{
+        res.status(500).json({err});
+    });
+}
+const updateJokeById = (req,res)=>{
+    Joke.findOneAndUpdate({_id: req.params.id}, req.body,
+        {new:true, runValidators:true})
+    .then((jokes)=>{
+        res.status(200).json(jokes);
+    })
+    .catch((err)=>{
+        res.status(500).json({err});
+    });
+}
+const deleteJokeById = (req,res)=>{
+    Joke.deleteOne({_id:req.params.id})
+    .then((result)=>{
+        res.status(200).json({result: result});
+    })
+    .catch((err)=>{
+        res.status(500).json({err});
+    });
+}
+
 
 module.exports = {
     createJoke,
-    getJoke
+    getJoke,
+    getJokeById,
+    updateJokeById,
+    deleteJokeById
 }
