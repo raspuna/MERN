@@ -5,7 +5,7 @@ const JokeSchema = mongoose.Schema(
         punchline:String,
     },
     {
-        timestamp: true,
+        timestamps: true,
     });
 const Joke = mongoose.model('Joke', JokeSchema); 
 module.exports = Joke;
