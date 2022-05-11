@@ -25,8 +25,8 @@ function ProductForm() {
       }
       console.log({product});
       axios.post("http://localhost:8000/api/products", product)
-      .then(res=>{console.log(res)})
-      .catch(err=>{console.log("submit fail", err)})
+        .then(res=>{console.log(res)})
+        .catch(err=>{console.log("submit fail", err)})
       //setProducts([products, ...product]);
       e.target.reset();
       setTitle('');
