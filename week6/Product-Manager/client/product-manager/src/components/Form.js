@@ -3,18 +3,29 @@ import axios from 'axios';
 import FormGroup from 'react-bootstrap/esm/FormGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useParams, useNavigate } from 'react-router-dom';
 
-function ProductForm() {
+function ProductForm(props) {
+  const navigate = useNavigate();
+  const { productID } = useParams();
+  const { addFromDom } = props;
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState('');
   const [message, setMessage ] = useState("Loading...")
   useEffect(()=>{
-    axios.get("http://localhost:8000/")
-      .then(res=>setMessage(res.data.message))
+    console.log({productID})
+    if (productID) {
+      axios.get(`http://localhost:8000/api/product/${productID}`)
+      .then(res=>{
+        console.log(res.data)
+        setTitle(res.data.title)
+        setPrice(res.data.price)
+        setDesc(res.data.description)
+      })
       .catch(err=>console.log(err))
+    }
   },[])
-  //const [ products, setProducts] = useState([]);
   const handleSubmit = (e) =>{
     e.preventDefault();
     if(title && price && desc) {
@@ -24,10 +35,21 @@ function ProductForm() {
         description:desc,
       }
       console.log({product});
-      axios.post("http://localhost:8000/api/products", product)
-        .then(res=>{console.log(res)})
-        .catch(err=>{console.log("submit fail", err)})
-      //setProducts([products, ...product]);
+      if(productID){
+        console.log({productID})
+        axios.put("http://localhost:8000/api/product/"+productID, product)
+        .then(res=>{console.log(res)
+          navigate("/"+productID);
+        })
+        .catch(err=>{console.log("put submit fail", err)})
+      } else {
+        axios.post("http://localhost:8000/api/products", product)
+        .then(res=>{console.log(res)
+          addFromDom(res.data.newProduct)
+        })
+        .catch(err=>{console.log("post submit fail", err)})
+      }
+           //setProducts([products, ...product]);
       e.target.reset();
       setTitle('');
       setPrice(0);
