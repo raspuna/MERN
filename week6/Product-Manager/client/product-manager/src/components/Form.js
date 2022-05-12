@@ -12,10 +12,10 @@ function ProductForm(props) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState('');
-  
+
   useEffect(()=>{
-    console.log({productID})
     if (productID) {
+      console.log({productID})
       axios.get(`http://localhost:8000/api/product/${productID}`)
       .then(res=>{
         console.log(res.data)
