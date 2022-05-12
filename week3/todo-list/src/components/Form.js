@@ -16,7 +16,7 @@ function ListForm(props) {
         checked: false,
         id : v4()
       };
-      setTodoList([...todoList, newTodo]);
+      setTodoList([newTodo, ...todoList]);
       e.target.reset();
       setTodo('');
     } else {
