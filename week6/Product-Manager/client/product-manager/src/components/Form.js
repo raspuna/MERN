@@ -12,7 +12,7 @@ function ProductForm(props) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [desc, setDesc] = useState('');
-  const [message, setMessage ] = useState("Loading...")
+  
   useEffect(()=>{
     console.log({productID})
     if (productID) {
@@ -35,31 +35,31 @@ function ProductForm(props) {
         description:desc,
       }
       console.log({product});
-      if(productID){
+      if(productID){ // update
         console.log({productID})
         axios.put("http://localhost:8000/api/product/"+productID, product)
         .then(res=>{console.log(res)
           navigate("/"+productID);
         })
         .catch(err=>{console.log("put submit fail", err)})
-      } else {
+      } else { // create
         axios.post("http://localhost:8000/api/products", product)
         .then(res=>{console.log(res)
           addFromDom(res.data.newProduct)
+          e.target.reset();
+          setTitle('');
+          setPrice(0);
+          setDesc('');
         })
         .catch(err=>{console.log("post submit fail", err)})
       }
-           //setProducts([products, ...product]);
-      e.target.reset();
-      setTitle('');
-      setPrice(0);
-      setDesc('');
     } else {
       console.log("error")
     }
   }
   return (
-    <div> <h2>{message}</h2>
+    <div>
+      <h2> Product Manager </h2>
       <Form onSubmit={handleSubmit}>
         <FormGroup className='d-flex'>
           <Form.Label>Title:</Form.Label>
